@@ -2,4 +2,8 @@
 bootstrap/
 jquery/
 popper/
+pics/
+pics_urls.txt
+cardlist.json
+node_modules/
 
