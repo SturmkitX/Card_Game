@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<div class="container-fluid">
+<div class="container-fluid" style="max-height: 100vh;">
     <div class="row justify-content-center no-gutters">
         <div class="col-2" style="padding-right: 5px;">
             <input type="text" class="form-control" id="cardNameField" />
@@ -20,10 +20,13 @@
         <div class="col-1">
             <input type="button" class="btn btn-secondary" value="Search" id="searchBtn" />
         </div>
+        <div class="col-1">
+            <input type="button" class="btn btn-secondary" value="Save deck" id="saveBtn" />
+        </div>
     </div>
 
     <div class="row">
-        <div class="col-3 position-fixed" id="previewColumn">
+        <div class="col-3" id="previewColumn">
             <div class="row">
                 <div class="col">
                     <img class="img-fluid" alt="Card image" id="cardPreview" />
@@ -32,41 +35,56 @@
             </div>
             <div class="row">
                 <div class="col">
-                    Name: <span>Cacat</span>
+                    Name: <span id="cardPreviewName"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    Type: <span>Plod</span>
+                    Type: <span id="cardPreviewType"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    Archetype: <span>Jeg</span>
+                    Archetype: <span id="cardPreviewArchetype"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    Race: <span>Manglit</span>
+                    Attribute: <span id="cardPreviewAttribute"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <span>Description</span>
+                    Race: <span id="cardPreviewRace"></span>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 10px; padding-bottom: 10px;">
+                <div class="col">
+                    <span id="cardPreviewDescription"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6 justify-content-start">
-                    Attack: <span>1200</span>
+                    Attack: <span id="cardPreviewAttack"></span>
                 </div>
                 <div class="col-6 justify-content-end">
-                    Defense: <span>800</span>
+                    Defense: <span id="cardPreviewDefense" class="text-justify"></span>
                 </div>
             </div>
 
 
         </div>
-        <div class="col-9" id="cardSearchPreview">
+        <div class="col-8" id="deckPreview">
+            <div class="row" id="normalCardDeck">
+
+            </div>
+
+            <div class="row" id="extraCardDeck">
+
+            </div>
+
+        </div>
+        <div class="col-1 overflow-auto" id="cardSearchPreview" style="max-height: 95vh;">
 
         </div>
     </div>

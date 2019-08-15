@@ -73,6 +73,10 @@ exports.findByName = function(name) {
     });
 };
 
+exports.closeDB = function() {
+    db.close();
+};
+
 
 
 

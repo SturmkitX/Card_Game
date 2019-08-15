@@ -26,4 +26,6 @@ app.get('/api/getCard', (req, res) => {
 app.use(express.static('cards'));
 app.use(express.static('pages'));
 
+process.on('exit', manager.closeDB);
+
 app.listen(3000, '0.0.0.0', () => console.log('Server started on port 3000!'));
