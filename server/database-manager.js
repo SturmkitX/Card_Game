@@ -66,6 +66,21 @@ exports.findById = function(id) {
     });
 };
 
+exports.findMultipleById = function(ids) {
+    const idList = `(${ids.join(',')})`;
+    const sql = `SELECT * FROM Cards WHERE id IN ${idList}`;
+    console.log(sql);
+    return new Promise((resolve, reject) => {
+        db.all(sql, (err, rows) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(rows);
+            }
+        });
+    });
+};
+
 exports.findByName = function(name) {
     let sql = "SELECT * FROM Cards WHERE name LIKE '%' || ? || '%'";
     return new Promise((resolve, reject) => {

@@ -11,12 +11,11 @@ manager.init();
 app.use(bodyParser.json());
 
 app.get('/api/getCard', cardManager.findCard);
-app.post('/api/joinRoom', socketManager.addToPoolRequest);
 app.use(express.static('cards'));
 app.use(express.static('pages'));
 
 process.on('exit', manager.closeDB);
 
-socketManager.init(server);
+socketManager.init(server, manager);
 
 server.listen(3000, '0.0.0.0', () => console.log('Server started on port 3000!'));

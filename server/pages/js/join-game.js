@@ -8,6 +8,12 @@ function attemptJoin() {
     const address = document.getElementById('gameAddress').value.trim();
     const roomId = document.getElementById('gameId').value.trim();
 
+    const connectionInfo = {
+        name: name,
+        address: address,
+        roomId: roomId
+    };
+
     if (name.length === 0 || address.length === 0) {
         window.alert('Invalid name / address');
         return;
@@ -34,7 +40,7 @@ function attemptJoin() {
         const data = JSON.parse(message.data);
         console.log(data);
 
-        handleReceivedData(data);
+        handleReceivedData(data, connectionInfo);
     });
 
     socket.addEventListener('error', ev => {
@@ -44,13 +50,13 @@ function attemptJoin() {
 
 }
 
-function handleReceivedData(data) {
+function handleReceivedData(data, connectionInfo) {
     switch (data.event) {
-        case 'UPDATE_ROOM': _updateRoomInfo(data); break;
+        case 'UPDATE_ROOM': _updateRoomInfo(data, connectionInfo); break;
     }
 }
 
-function _updateRoomInfo(data) {
+function _updateRoomInfo(data, connectionInfo) {
     // update names
     let nameFields = document.getElementsByName('playerName');
     for (let i in data.names) {
@@ -60,5 +66,8 @@ function _updateRoomInfo(data) {
     // see if we have enough players to start the game
     if (data.action === 'START_GAME') {
         console.info('We can now start the game');
+
+        const data = window.btoa(JSON.stringify(connectionInfo));
+        window.location.href = `http://${window.location.host}/html/main-game.html?data=${data}`;
     }
 }
