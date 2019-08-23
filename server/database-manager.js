@@ -1,13 +1,19 @@
 const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose();
 
-const arr = JSON.parse(fs.readFileSync('./cards/cardlist.json', {encoding: 'utf8'}));
-const len = arr.length;
-const db = new sqlite3.Database('./cards.db', err => {
-    if (err) {
-        throw err;
-    }
-});
+let arr = undefined;
+let len = 0;
+let db = undefined;
+
+exports.init = function() {
+    arr = JSON.parse(fs.readFileSync('./cards/cardlist.json', {encoding: 'utf8'}));
+    len = arr.length;
+    db = new sqlite3.Database('./cards.db', err => {
+        if (err) {
+            throw err;
+        }
+    });
+};
 
 exports.populate = function() {
     db.serialize(() => {

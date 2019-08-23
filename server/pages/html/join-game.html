@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <title>Join room</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <input type="text" class="form-control" placeholder="Name" id="gameName" />
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <input type="text" class="form-control" placeholder="Address" id="gameAddress" />
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <input type="text" class="form-control" placeholder="Room ID" id="gameId" />
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <input type="button" class="btn btn-primary" value="Join Room" id="joinBtn" />
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col">
+                <h2>Connected players</h2>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col">
+                <span name="playerName"></span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col">
+                <span name="playerName"></span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col">
+                <span id="playerStatus"></span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../jquery/jquery-3.4.1.slim.min.js" ></script>
+    <script src="../popper/umd/popper.min.js" ></script>
+    <script src="../bootstrap/js/bootstrap.min.js" ></script>
+    <script type="module" src="../js/join-game.js"></script>
+
+</body>
+</html>

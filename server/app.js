@@ -1,31 +1,22 @@
 const express = require('express');
+const http = require('http');
 const manager = require('./database-manager');
+const cardManager = require('./card-manager');
+const socketManager = require('./socket-manager');
+const bodyParser = require('body-parser');
 const app = express();
+const server = http.createServer(app);
 
-app.get('/', (req, res) => {
-    res.status(200).send('Hello World');
-});
-app.get('/api/getCard', (req, res) => {
-    let searchFunction;
-    if (req.query.id) {
-        searchFunction = manager.findById(req.query.id);
-    } else if (req.query.name) {
-        searchFunction = manager.findByName(req.query.name);
-    }
+manager.init();
+app.use(bodyParser.json());
 
-    if (!searchFunction) {
-        res.status(400).send({status: 'error', message: 'Please specify an ID or a name'});
-    } else {
-        searchFunction.then(result => {
-            res.status(200).json({status: 'ok', result: result});
-        }).catch(err => {
-            res.json({status: 'error', message: err});
-        })
-    }
-});
+app.get('/api/getCard', cardManager.findCard);
+app.post('/api/joinRoom', socketManager.addToPoolRequest);
 app.use(express.static('cards'));
 app.use(express.static('pages'));
 
 process.on('exit', manager.closeDB);
 
-app.listen(3000, '0.0.0.0', () => console.log('Server started on port 3000!'));
+socketManager.init(server);
+
+server.listen(3000, '0.0.0.0', () => console.log('Server started on port 3000!'));
